@@ -41,4 +41,9 @@ export class LoginComponent {
       }
     });
   }
+
+  fillAdminCredentials() {
+    this.model.email = 'admin@gmail.com';
+    this.model.password = 'Admin@123';
+  }
 }
