@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BlogPost } from '../../blog-post/models/blog-post.model';
 import { BlogPostService } from '../../blog-post/services/blog-post.service';
+import { BlogPostHome } from '../../blog-post/models/blog-post-home.model';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +10,11 @@ import { BlogPostService } from '../../blog-post/services/blog-post.service';
 })
 export class HomeComponent implements OnInit {
 
-  blogs$?: Observable<BlogPost[]>;
+  blogs$?: Observable<BlogPostHome[]>;
   constructor(private blogPostService: BlogPostService) {
 
   }
   ngOnInit(): void {
-    this.blogs$ = this.blogPostService.getAllBlogPosts();
+    this.blogs$ = this.blogPostService.getAllBlogPostsHome();
   }
 }
