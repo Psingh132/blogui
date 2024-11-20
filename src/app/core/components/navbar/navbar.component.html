@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
-    <a class="navbar-brand" href="#">Dev Blog</a>
+    <a class="navbar-brand" href="#">BlogShare</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -52,18 +52,19 @@
       </ul>
 
       <div class="d-flex">
-        <ng-container *ngIf="user === undefined; else showLogout">
+        <ng-container *ngIf="!user && showButtons; else showLogout">
           <!-- Show Login Button -->
-          <a [routerLink]="['/login']" class="btn btn-primary">Login</a>
+          <a [routerLink]="['/login']" class="btn btn-light my-button me-2">Sign In</a>
+          <a [routerLink]="['/register']" class="btn btn-light register-button">Create Account</a>
         </ng-container>
 
         <ng-template #showLogout>
-          <div class="d-flex align-items-center">
-            <span>{{ user?.email }}</span>
-            <button class="btn btn-primary ms-3" (click)="onLogout()">
-              Logout
-            </button>
-          </div>
+          <ng-container *ngIf="user">
+            <div class="d-flex align-items-center">
+              <span>{{ user.email }}</span>
+              <button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
+            </div>
+          </ng-container>
         </ng-template>
       </div>
     </div>

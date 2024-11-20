@@ -1,31 +1,35 @@
 <div class="container">
     <div class="mt-5">
       <div class="col-12 col-md-6 col-lg-4 mx-auto">
-        <h1>Login</h1>
+        <h1>Sign in to BlogShare</h1>
   
         <form #form="ngForm" (ngSubmit)="onFormSubmit()">
           <div class="mt-3">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control" id="email" name="email"
+            <input type="text" placeholder="example@gmail.com" class="form-control" id="email" name="email"
             [(ngModel)]="model.email">
           </div>
   
           <div class="mt-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password"
+            <input type="password" placeholder="........" class="form-control" id="password" name="password"
             [(ngModel)]="model.password">
           </div>
   
           <div class="mt-3">
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn submit-button">Login</button>
           </div>
         </form> 
 
         <div class="mt-3">
-          <p>Don't have an account? <a routerLink="/register" class="btn btn-link">Register</a></p>
+          <p>Don't have an account? <a class="text-decoration-none" routerLink="/register">
+            <span style="color: chocolate;">Register</span>
+          </a></p>
         </div>
-        <div class="mt-3">
-          <p>Want to check admin feature? <a class="btn btn-link" (click)="fillAdminCredentials()">Admin Login</a></p>
+        <div>
+          <p>Want to check admin feature? <a class="btn" (click)="fillAdminCredentials()">
+            <span style="color: chocolate;">Admin Login</span>
+          </a></p>
         </div>
       </div>
   

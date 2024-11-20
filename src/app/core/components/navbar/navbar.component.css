@@ -1,0 +1,15 @@
+.my-button {
+    background-color: #dee9f191;
+    border-color: #dee9f191;
+}
+
+.register-button {
+    background-color: orange;
+    color: white; /* Ensures text is visible */
+    border-color: orange; /* Matches the button border */
+  }
+  
+  .register-button:hover {
+    background-color: darkorange; /* Darker shade for hover effect */
+    border-color: darkorange;
+  }

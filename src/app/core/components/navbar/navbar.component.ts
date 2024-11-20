@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { User } from 'src/app/features/auth/models/user.model';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 
@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   user?: User;
+  showButtons: boolean = true;
 
   constructor(private authService: AuthService,
     private router: Router) {
@@ -26,10 +27,18 @@ export class NavbarComponent implements OnInit {
 
     this.user = this.authService.getUser();
 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const currentRoute = event.urlAfterRedirects;
+        this.showButtons = !(currentRoute === '/login' || currentRoute === '/register');
+      }
+    });
+
   }
 
   onLogout(): void {
     this.authService.logout();
+    this.user = undefined;
     this.router.navigateByUrl('/');
   }
 
