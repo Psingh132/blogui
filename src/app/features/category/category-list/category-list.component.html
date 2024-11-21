@@ -3,10 +3,18 @@
 
   <div class="d-flex justify-content-between mt-3">
     <div class="d-flex">
-      <input type="text" class="form-control" #queryText>
-      <button type="button" class="btn btn-warning ms-3" (click)="onSearch(queryText.value)">Search</button>
+      <input type="text" class="form-control" #queryText />
+      <button
+        type="button"
+        class="btn btn-warning ms-3"
+        (click)="onSearch(queryText.value)"
+      >
+        Search
+      </button>
     </div>
-    <a [routerLink]="['/admin/categories/add']" class="btn btn-primary">Add Category</a>
+    <a [routerLink]="['/admin/categories/add']" class="btn btn-primary"
+      >Add Category</a
+    >
   </div>
 
   <ng-container *ngIf="categories$ | async as categories">
@@ -18,12 +26,20 @@
             Name
             <span>
               <span>
-                <button type="button" class="btn btn-light" (click)="sort('name', 'asc')">
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="sort('name', 'asc')"
+                >
                   <i class="bi bi-arrow-up"></i>
                 </button>
               </span>
               <span>
-                <button type="button" class="btn btn-light" (click)="sort('name', 'desc')">
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="sort('name', 'desc')"
+                >
                   <i class="bi bi-arrow-down"></i>
                 </button>
               </span>
@@ -33,12 +49,20 @@
             UrlHandle
             <span>
               <span>
-                <button type="button" class="btn btn-light" (click)="sort('url', 'asc')">
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="sort('url', 'asc')"
+                >
                   <i class="bi bi-arrow-up"></i>
                 </button>
               </span>
               <span>
-                <button type="button" class="btn btn-light" (click)="sort('url', 'desc')">
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="sort('url', 'desc')"
+                >
                   <i class="bi bi-arrow-down"></i>
                 </button>
               </span>
@@ -65,14 +89,26 @@
 
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" (click)="getPrevPage()" style="cursor: pointer;">Previous</a></li>
-
-        <li *ngFor="let item of list;let index = index" class="page-item" >
-          <a class="page-link" (click)="getPage(index + 1)" style="cursor: pointer;">{{index + 1}}</a>
+        <li class="page-item">
+          <a class="page-link" (click)="getPrevPage()" style="cursor: pointer"
+            >Previous</a
+          >
         </li>
 
+        <li *ngFor="let item of list; let index = index" class="page-item">
+          <a
+            class="page-link"
+            (click)="getPage(index + 1)"
+            style="cursor: pointer"
+            >{{ index + 1 }}</a
+          >
+        </li>
 
-        <li class="page-item"><a class="page-link" (click)="getNextPage()" style="cursor: pointer;">Next</a></li>
+        <li class="page-item">
+          <a class="page-link" (click)="getNextPage()" style="cursor: pointer"
+            >Next</a
+          >
+        </li>
       </ul>
     </nav>
   </ng-container>

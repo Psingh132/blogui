@@ -7,7 +7,7 @@ import { ImageService } from './image.service';
 @Component({
   selector: 'app-image-selector',
   templateUrl: './image-selector.component.html',
-  styleUrls: ['./image-selector.component.css']
+  styleUrls: ['./image-selector.component.css'],
 })
 export class ImageSelectorComponent implements OnInit {
   private file?: File;
@@ -15,11 +15,9 @@ export class ImageSelectorComponent implements OnInit {
   title: string = '';
   images$?: Observable<BlogImage[]>;
 
-  @ViewChild('form', { static: false}) imageUploadForm?: NgForm;
+  @ViewChild('form', { static: false }) imageUploadForm?: NgForm;
 
-  constructor(private imageService: ImageService) {
-
-  }
+  constructor(private imageService: ImageService) {}
 
   // on initialization get all the images
   ngOnInit(): void {
@@ -34,13 +32,14 @@ export class ImageSelectorComponent implements OnInit {
   uploadImage(): void {
     if (this.file && this.fileName !== '' && this.title !== '') {
       // Image service to upload the image
-      this.imageService.uploadImage(this.file, this.fileName, this.title)
-      .subscribe({
-        next: (response) => {
-          this.imageUploadForm?.resetForm();
-          this.getImages();
-        }
-      });
+      this.imageService
+        .uploadImage(this.file, this.fileName, this.title)
+        .subscribe({
+          next: (response) => {
+            this.imageUploadForm?.resetForm();
+            this.getImages();
+          },
+        });
     }
   }
 
@@ -51,5 +50,4 @@ export class ImageSelectorComponent implements OnInit {
   private getImages() {
     this.images$ = this.imageService.getAllImages();
   }
-
 }

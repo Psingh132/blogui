@@ -9,62 +9,89 @@ import { BlogPostList } from '../models/blog-post-list.model';
 import { BlogPostHome } from '../models/blog-post-home.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BlogPostService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient : HttpClient) { }
-
-  createBlogPost(data: AddBlogPost) : Observable<BlogPost> {
-    return this.httpClient.post<BlogPost>(`${environment.apiBaseUrl}/api/blogposts?addAuth=true`, data);
+  createBlogPost(data: AddBlogPost): Observable<BlogPost> {
+    return this.httpClient.post<BlogPost>(
+      `${environment.apiBaseUrl}/api/blogposts?addAuth=true`,
+      data
+    );
   }
 
-  getAllBlogPostsList(pageNumber?: number, pageSize?: number) : Observable<BlogPostList[]> {
+  getAllBlogPostsList(
+    pageNumber?: number,
+    pageSize?: number
+  ): Observable<BlogPostList[]> {
     let params = new HttpParams();
     if (pageNumber) {
-      params = params.set('pageNumber', pageNumber)
+      params = params.set('pageNumber', pageNumber);
     }
 
     if (pageSize) {
-      params = params.set('pageSize', pageSize)
+      params = params.set('pageSize', pageSize);
     }
-    return this.httpClient.get<BlogPost[]>(`${environment.apiBaseUrl}/api/blogposts/bloglist`, {
-      params: params
-    });
+    return this.httpClient.get<BlogPost[]>(
+      `${environment.apiBaseUrl}/api/blogposts/bloglist`,
+      {
+        params: params,
+      }
+    );
   }
 
-  getAllBlogPostsHome(pageNumber?: number, pageSize?: number) : Observable<BlogPostHome[]> {
+  getAllBlogPostsHome(
+    pageNumber?: number,
+    pageSize?: number
+  ): Observable<BlogPostHome[]> {
     let params = new HttpParams();
     if (pageNumber) {
-      params = params.set('pageNumber', pageNumber)
+      params = params.set('pageNumber', pageNumber);
     }
 
     if (pageSize) {
-      params = params.set('pageSize', pageSize)
+      params = params.set('pageSize', pageSize);
     }
-    return this.httpClient.get<BlogPost[]>(`${environment.apiBaseUrl}/api/blogposts/homepage`, {
-      params: params
-    });
+    return this.httpClient.get<BlogPost[]>(
+      `${environment.apiBaseUrl}/api/blogposts/homepage`,
+      {
+        params: params,
+      }
+    );
   }
 
   getBlogPostCount(): Observable<number> {
-    return this.httpClient.get<number>(`${environment.apiBaseUrl}/api/blogposts/count`);
+    return this.httpClient.get<number>(
+      `${environment.apiBaseUrl}/api/blogposts/count`
+    );
   }
 
-
-  getBlogPostById(id:string): Observable<BlogPost> {
-    return this.httpClient.get<BlogPost>(`${environment.apiBaseUrl}/api/blogposts/${id}`);
+  getBlogPostById(id: string): Observable<BlogPost> {
+    return this.httpClient.get<BlogPost>(
+      `${environment.apiBaseUrl}/api/blogposts/${id}`
+    );
   }
 
-  getBlogPostByUrlHandle(urlHandle:string): Observable<BlogPost> {
-    return this.httpClient.get<BlogPost>(`${environment.apiBaseUrl}/api/blogposts/${urlHandle}`);
+  getBlogPostByUrlHandle(urlHandle: string): Observable<BlogPost> {
+    return this.httpClient.get<BlogPost>(
+      `${environment.apiBaseUrl}/api/blogposts/${urlHandle}`
+    );
   }
 
-  updateBlogPost(id:string, updateBlogPost: UpdateBlogPost): Observable<BlogPost> {
-    return this.httpClient.put<BlogPost>(`${environment.apiBaseUrl}/api/blogposts/${id}?addAuth=true`, updateBlogPost);
+  updateBlogPost(
+    id: string,
+    updateBlogPost: UpdateBlogPost
+  ): Observable<BlogPost> {
+    return this.httpClient.put<BlogPost>(
+      `${environment.apiBaseUrl}/api/blogposts/${id}?addAuth=true`,
+      updateBlogPost
+    );
   }
 
   deleteBlogPost(id: string): Observable<BlogPost> {
-    return this.httpClient.delete<BlogPost>(`${environment.apiBaseUrl}/api/blogposts/${id}?addAuth=true`);
+    return this.httpClient.delete<BlogPost>(
+      `${environment.apiBaseUrl}/api/blogposts/${id}?addAuth=true`
+    );
   }
 }

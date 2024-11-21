@@ -10,29 +10,45 @@ import { RegisterRequest } from '../models/register-request.model';
 import { RegisterResponse } from '../models/register-response.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   $user = new BehaviorSubject<User | undefined>(undefined);
+  private redirectUrl: string | null = null;
 
-  constructor(private http: HttpClient,
-    private cookieService: CookieService) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   login(request: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${environment.apiBaseUrl}/api/auth/login`, {
-      email: request.email,
-      password: request.password
-    });
+    return this.http.post<LoginResponse>(
+      `${environment.apiBaseUrl}/api/auth/login`,
+      {
+        email: request.email,
+        password: request.password,
+      }
+    );
   }
 
-  register(request: RegisterRequest) : Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(`${environment.apiBaseUrl}/api/auth/register`, {
-      email: request.email,
-      password: request.password
-    })
+  register(request: RegisterRequest): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>(
+      `${environment.apiBaseUrl}/api/auth/register`,
+      {
+        email: request.email,
+        password: request.password,
+      }
+    );
   }
 
+  setRedirectUrl(url: string): void {
+    this.redirectUrl = url;
+  }
+
+  getRedirectUrl(): string | null {
+    return this.redirectUrl;
+  }
+
+  clearRedirectUrl(): void {
+    this.redirectUrl = null;
+  }
 
   setUser(user: User): void {
     this.$user.next(user);
@@ -40,7 +56,7 @@ export class AuthService {
     localStorage.setItem('user-roles', user.roles.join(','));
   }
 
-  user() : Observable<User | undefined> {
+  user(): Observable<User | undefined> {
     return this.$user.asObservable();
   }
 
@@ -51,7 +67,7 @@ export class AuthService {
     if (email && roles) {
       const user: User = {
         email: email,
-        roles: roles.split(',')
+        roles: roles.split(','),
       };
 
       return user;

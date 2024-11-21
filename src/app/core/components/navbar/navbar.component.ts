@@ -6,23 +6,19 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
   user?: User;
   showButtons: boolean = true;
 
-  constructor(private authService: AuthService,
-    private router: Router) {
-  }
-
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.authService.user()
-    .subscribe({
+    this.authService.user().subscribe({
       next: (response) => {
         this.user = response;
-      }
+      },
     });
 
     this.user = this.authService.getUser();
@@ -30,10 +26,17 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentRoute = event.urlAfterRedirects;
-        this.showButtons = !(currentRoute === '/login' || currentRoute === '/register');
+        this.showButtons = !(
+          currentRoute === '/login' || currentRoute === '/register'
+        );
       }
     });
+  }
 
+  onEditClick(): void {
+    // If user is not logged in, save redirect URL and go to login
+    this.authService.setRedirectUrl('/write');
+    this.router.navigate(['/login']);
   }
 
   onLogout(): void {
@@ -41,5 +44,4 @@ export class NavbarComponent implements OnInit {
     this.user = undefined;
     this.router.navigateByUrl('/');
   }
-
 }

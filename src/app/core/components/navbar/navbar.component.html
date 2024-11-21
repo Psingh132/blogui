@@ -54,15 +54,40 @@
       <div class="d-flex">
         <ng-container *ngIf="!user && showButtons; else showLogout">
           <!-- Show Login Button -->
-          <a [routerLink]="['/login']" class="btn btn-light my-button me-2">Sign In</a>
-          <a [routerLink]="['/register']" class="btn btn-light register-button">Create Account</a>
+          <a
+            class="d-flex align-items-center py-0 px-1 me-2 text-decoration-none"
+            [routerLink]="['/login']"
+            (click)="authService.setRedirectUrl('/write')"
+            title="Write"
+            style="color: black"
+          >
+            <i class="bi bi-pencil" style="margin-right: 4px"></i>
+            Write
+          </a>
+          <a [routerLink]="['/login']" class="btn btn-light my-button me-2"
+            >Sign In</a
+          >
+          <a [routerLink]="['/register']" class="btn btn-light register-button"
+            >Create Account</a
+          >
         </ng-container>
 
         <ng-template #showLogout>
           <ng-container *ngIf="user">
             <div class="d-flex align-items-center">
+              <a
+                class="d-flex align-items-center py-0 px-1 me-2 text-decoration-none"
+                [routerLink]="['/write']"
+                title="Write"
+                style="color: black"
+              >
+                <i class="bi bi-pencil" style="margin-right: 4px"></i>
+                Write
+              </a>
               <span>{{ user.email }}</span>
-              <button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
+              <button class="btn btn-primary ms-3" (click)="onLogout()">
+                Logout
+              </button>
             </div>
           </ng-container>
         </ng-template>

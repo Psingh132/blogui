@@ -19,6 +19,7 @@ import { BlogDetailsComponent } from './features/public/blog-details/blog-detail
 import { LoginComponent } from './features/auth/login/login.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { RegisterComponent } from './features/auth/register/register/register.component';
+import { WriteBlogComponent } from './features/blog-post/write-blog/write-blog/write-blog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { RegisterComponent } from './features/auth/register/register/register.co
     HomeComponent,
     BlogDetailsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    WriteBlogComponent
   ],
   imports: [
     BrowserModule,

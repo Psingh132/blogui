@@ -11,6 +11,7 @@ import { BlogDetailsComponent } from './features/public/blog-details/blog-detail
 import { LoginComponent } from './features/auth/login/login.component';
 import { authGuard } from './features/auth/guards/auth.guard';
 import { RegisterComponent } from './features/auth/register/register/register.component';
+import { WriteBlogComponent } from './features/blog-post/write-blog/write-blog/write-blog.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path:'blog/:url',
     component: BlogDetailsComponent
+  },
+  {
+    path:'write',
+    component: WriteBlogComponent
   },
   {
     path: 'admin/categories',

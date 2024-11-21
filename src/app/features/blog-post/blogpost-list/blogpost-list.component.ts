@@ -6,11 +6,10 @@ import { BlogPostList } from '../models/blog-post-list.model';
 @Component({
   selector: 'app-blogpost-list',
   templateUrl: './blogpost-list.component.html',
-  styleUrls: ['./blogpost-list.component.css']
+  styleUrls: ['./blogpost-list.component.css'],
 })
 export class BlogpostListComponent implements OnInit {
-
-  blogPost$? : Observable<BlogPostList[]>;
+  blogPost$?: Observable<BlogPostList[]>;
   totalCount?: number;
   list: number[] = [];
   pageNumber = 1;
@@ -18,18 +17,18 @@ export class BlogpostListComponent implements OnInit {
 
   constructor(private blogPostService: BlogPostService) {}
 
-
   ngOnInit(): void {
-    this.blogPostService.getBlogPostCount()
-    .subscribe({
+    this.blogPostService.getBlogPostCount().subscribe({
       next: (value) => {
         this.totalCount = value;
-          this.list = new Array(Math.ceil(value / this.pageSize))
+        this.list = new Array(Math.ceil(value / this.pageSize));
 
-          this.blogPost$ = this.blogPostService.getAllBlogPostsList(this.pageNumber,
-            this.pageSize);
-      }
-    })
+        this.blogPost$ = this.blogPostService.getAllBlogPostsList(
+          this.pageNumber,
+          this.pageSize
+        );
+      },
+    });
     this.blogPost$ = this.blogPostService.getAllBlogPostsList();
   }
 
@@ -65,5 +64,4 @@ export class BlogpostListComponent implements OnInit {
       this.pageSize
     );
   }
-
 }

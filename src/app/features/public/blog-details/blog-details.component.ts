@@ -7,22 +7,21 @@ import { BlogPost } from '../../blog-post/models/blog-post.model';
 @Component({
   selector: 'app-blog-details',
   templateUrl: './blog-details.component.html',
-  styleUrls: ['./blog-details.component.css']
+  styleUrls: ['./blog-details.component.css'],
 })
 export class BlogDetailsComponent implements OnInit {
   url: string | null = null;
-  blogPost$? : Observable<BlogPost>;
+  blogPost$?: Observable<BlogPost>;
 
-  constructor(private route: ActivatedRoute,
-    private blogPostService: BlogPostService) {
-
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private blogPostService: BlogPostService
+  ) {}
   ngOnInit(): void {
-    this.route.paramMap
-    .subscribe({
+    this.route.paramMap.subscribe({
       next: (params) => {
         this.url = params.get('url');
-      }
+      },
     });
 
     // Fetch blog details by url
