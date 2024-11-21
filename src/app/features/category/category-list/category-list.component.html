@@ -65,14 +65,14 @@
 
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" (click)="getPrevPage()">Previous</a></li>
+        <li class="page-item"><a class="page-link" (click)="getPrevPage()" style="cursor: pointer;">Previous</a></li>
 
         <li *ngFor="let item of list;let index = index" class="page-item" >
-          <a class="page-link" (click)="getPage(index + 1)">{{index + 1}}</a>
+          <a class="page-link" (click)="getPage(index + 1)" style="cursor: pointer;">{{index + 1}}</a>
         </li>
 
 
-        <li class="page-item"><a class="page-link" (click)="getNextPage()">Next</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNextPage()" style="cursor: pointer;">Next</a></li>
       </ul>
     </nav>
   </ng-container>

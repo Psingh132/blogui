@@ -11,12 +11,59 @@ import { BlogPostList } from '../models/blog-post-list.model';
 export class BlogpostListComponent implements OnInit {
 
   blogPost$? : Observable<BlogPostList[]>;
+  totalCount?: number;
+  list: number[] = [];
+  pageNumber = 1;
+  pageSize = 10;
 
   constructor(private blogPostService: BlogPostService) {}
 
 
   ngOnInit(): void {
+    this.blogPostService.getBlogPostCount()
+    .subscribe({
+      next: (value) => {
+        this.totalCount = value;
+          this.list = new Array(Math.ceil(value / this.pageSize))
+
+          this.blogPost$ = this.blogPostService.getAllBlogPostsList(this.pageNumber,
+            this.pageSize);
+      }
+    })
     this.blogPost$ = this.blogPostService.getAllBlogPostsList();
+  }
+
+  getPage(pageNumber: number) {
+    this.pageNumber = pageNumber;
+
+    this.blogPost$ = this.blogPostService.getAllBlogPostsList(
+      this.pageNumber,
+      this.pageSize
+    );
+  }
+
+  getNextPage() {
+    if (this.pageNumber + 1 > this.list.length) {
+      return;
+    }
+
+    this.pageNumber += 1;
+    this.blogPost$ = this.blogPostService.getAllBlogPostsList(
+      this.pageNumber,
+      this.pageSize
+    );
+  }
+
+  getPrevPage() {
+    if (this.pageNumber - 1 < 1) {
+      return;
+    }
+
+    this.pageNumber -= 1;
+    this.blogPost$ = this.blogPostService.getAllBlogPostsList(
+      this.pageNumber,
+      this.pageSize
+    );
   }
 
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AddBlogPost } from '../models/add-blog-post.model';
 import { Observable } from 'rxjs';
@@ -19,12 +19,36 @@ export class BlogPostService {
     return this.httpClient.post<BlogPost>(`${environment.apiBaseUrl}/api/blogposts?addAuth=true`, data);
   }
 
-  getAllBlogPostsList() : Observable<BlogPostList[]> {
-    return this.httpClient.get<BlogPost[]>(`${environment.apiBaseUrl}/api/blogposts/bloglist`);
+  getAllBlogPostsList(pageNumber?: number, pageSize?: number) : Observable<BlogPostList[]> {
+    let params = new HttpParams();
+    if (pageNumber) {
+      params = params.set('pageNumber', pageNumber)
+    }
+
+    if (pageSize) {
+      params = params.set('pageSize', pageSize)
+    }
+    return this.httpClient.get<BlogPost[]>(`${environment.apiBaseUrl}/api/blogposts/bloglist`, {
+      params: params
+    });
   }
 
-  getAllBlogPostsHome() : Observable<BlogPostHome[]> {
-    return this.httpClient.get<BlogPost[]>(`${environment.apiBaseUrl}/api/blogposts/homepage`);
+  getAllBlogPostsHome(pageNumber?: number, pageSize?: number) : Observable<BlogPostHome[]> {
+    let params = new HttpParams();
+    if (pageNumber) {
+      params = params.set('pageNumber', pageNumber)
+    }
+
+    if (pageSize) {
+      params = params.set('pageSize', pageSize)
+    }
+    return this.httpClient.get<BlogPost[]>(`${environment.apiBaseUrl}/api/blogposts/homepage`, {
+      params: params
+    });
+  }
+
+  getBlogPostCount(): Observable<number> {
+    return this.httpClient.get<number>(`${environment.apiBaseUrl}/api/blogposts/count`);
   }
 
 
