@@ -1,4 +1,4 @@
-<ng-container *ngIf="user !== undefined && user?.roles?.includes('Reader')">
+<ng-container *ngIf="user !== undefined && !(user?.roles?.includes('Writer'))">
 <div class="container">
     <div class="my-3">
       <a [routerLink]="['/topic-detail', 'programming']" class=" topic-button text-decoration-none me-2">
