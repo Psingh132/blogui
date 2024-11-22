@@ -1,0 +1,17 @@
+.topic-button {
+  color: grey;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.topic-button:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.faded-line {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

@@ -21,33 +21,15 @@
         <ng-container
           *ngIf="user !== undefined && user?.roles?.includes('Writer')"
         >
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Admin
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" [routerLink]="['/admin/categories']"
+        <div class="d-flex align-items-center">
+
+                <a class="dropdown-item me-2" [routerLink]="['/admin/categories']"
                   >Categories</a
                 >
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li>
                 <a class="dropdown-item" [routerLink]="['/admin/blogposts']"
                   >BlogPosts</a
                 >
-              </li>
-              <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-            </ul>
-          </li>
+              </div>
         </ng-container>
       </ul>
 

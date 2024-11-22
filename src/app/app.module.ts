@@ -20,6 +20,8 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { RegisterComponent } from './features/auth/register/register/register.component';
 import { WriteBlogComponent } from './features/blog-post/write-blog/write-blog/write-blog.component';
+import { TopicsComponent } from './core/components/topics/topics/topics.component';
+import { TopicDetailComponent } from './core/components/topics/topic-detail/topic-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { WriteBlogComponent } from './features/blog-post/write-blog/write-blog/w
     BlogDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    WriteBlogComponent
+    WriteBlogComponent,
+    TopicsComponent,
+    TopicDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,20 @@
+<ng-container *ngIf="user !== undefined && user?.roles?.includes('Reader')">
+<div class="container">
+    <div class="my-3">
+      <a [routerLink]="['/topic-detail', 'programming']" class=" topic-button text-decoration-none me-2">
+        Programming
+      </a>
+      <a [routerLink]="['/topic-detail', 'technology']" class="topic-button text-decoration-none me-2">
+        Technology
+      </a>
+      <a [routerLink]="['/topic-detail', 'business']" class="topic-button text-decoration-none me-2">
+        Business
+      </a>
+      <a [routerLink]="['/topic-detail', 'sports']" class="topic-button text-decoration-none">
+        Sports
+      </a>
+    </div>
+    <hr class="faded-line" />
+  </div>
+</ng-container>
+  

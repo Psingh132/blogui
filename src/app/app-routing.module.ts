@@ -12,6 +12,7 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { authGuard } from './features/auth/guards/auth.guard';
 import { RegisterComponent } from './features/auth/register/register/register.component';
 import { WriteBlogComponent } from './features/blog-post/write-blog/write-blog/write-blog.component';
+import { TopicDetailComponent } from './core/components/topics/topic-detail/topic-detail.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path:'write',
     component: WriteBlogComponent
+  },
+  {
+    path: 'topic-detail/:topic',
+    component: TopicDetailComponent
   },
   {
     path: 'admin/categories',
