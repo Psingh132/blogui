@@ -36,7 +36,7 @@ const routes: Routes = [
     component: WriteBlogComponent
   },
   {
-    path: 'topic-detail/:topic',
+    path: 'blog/:topic/:id',
     component: TopicDetailComponent
   },
   {

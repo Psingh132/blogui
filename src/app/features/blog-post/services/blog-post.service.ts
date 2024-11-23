@@ -61,6 +61,12 @@ export class BlogPostService {
     );
   }
 
+  getTopicBlogPost(topicId: string): Observable<BlogPostHome[]> {
+    return this.httpClient.get<BlogPostHome[]>(
+      `${environment.apiBaseUrl}/api/blogposts/topicblogpost/${topicId}`
+    );
+  }
+
   getBlogPostCount(): Observable<number> {
     return this.httpClient.get<number>(
       `${environment.apiBaseUrl}/api/blogposts/count`

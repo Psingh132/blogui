@@ -1,20 +1,12 @@
-<ng-container *ngIf="user !== undefined && !(user?.roles?.includes('Writer'))">
-<div class="container">
-    <div class="my-3">
-      <a [routerLink]="['/topic-detail', 'programming']" class=" topic-button text-decoration-none me-2">
-        Programming
-      </a>
-      <a [routerLink]="['/topic-detail', 'technology']" class="topic-button text-decoration-none me-2">
-        Technology
-      </a>
-      <a [routerLink]="['/topic-detail', 'business']" class="topic-button text-decoration-none me-2">
-        Business
-      </a>
-      <a [routerLink]="['/topic-detail', 'sports']" class="topic-button text-decoration-none">
-        Sports
-      </a>
+<ng-container *ngIf="user !== undefined && !user?.roles?.includes('Writer')">
+  <div class="container">
+    <div class="my-2 d-flex flex-wrap align-items-center">
+      <ng-container *ngIf="topics$ | async as topics">
+        <ng-container *ngFor="let topic of topics">
+          <a class="text-decoration-none topic-button m-2" [routerLink]="['/blog',topic.name, topic.id]">{{topic.name}}</a>
+        </ng-container>
+      </ng-container>
     </div>
-    <hr class="faded-line" />
+    <hr class="faded-line mt-0" />
   </div>
 </ng-container>
-  

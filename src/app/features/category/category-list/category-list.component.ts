@@ -13,7 +13,7 @@ export class CategoryListComponent implements OnInit {
   totalCount?: number;
   list: number[] = [];
   pageNumber = 1;
-  pageSize = 3;
+  pageSize = 5;
 
   constructor(private categoryService: CategoryService) {}
 
