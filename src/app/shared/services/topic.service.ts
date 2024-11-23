@@ -11,8 +11,8 @@ export class TopicService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllTopics(): Observable<Topic> {
-    return this.httpClient.get<Topic>(
+  getAllTopics(): Observable<Topic[]> {
+    return this.httpClient.get<Topic[]>(
       `${environment.apiBaseUrl}/api/topics`
     );
   }

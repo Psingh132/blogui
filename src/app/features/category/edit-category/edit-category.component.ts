@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category.model';
 import { UpdateCategoryRequest } from '../models/update-category-request.model';
+import { Topic } from 'src/app/shared/models/topic.model';
+import { TopicService } from 'src/app/shared/services/topic.service';
 
 @Component({
   selector: 'app-edit-category',
@@ -15,14 +17,20 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   paramsSubscription?: Subscription;
   editCategorySubscription?: Subscription;
   category?: Category;
+  topics$?: Observable<Topic[]>;
+  selectedTopicId?: string;
 
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private router: Router
+    private router: Router,
+    private topicService: TopicService
   ) {}
 
   ngOnInit(): void {
+    // Fetch topics
+    this.topics$ = this.topicService.getAllTopics();
+
     this.paramsSubscription = this.route.paramMap.subscribe({
       next: (params) => {
         this.id = params.get('id');
@@ -31,6 +39,7 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
           this.categoryService.getCategoryById(this.id).subscribe({
             next: (response) => {
               this.category = response;
+              this.selectedTopicId = response.topic.id;
             },
           });
         }
@@ -42,6 +51,7 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
     const updateCategoryRequest: UpdateCategoryRequest = {
       name: this.category?.name ?? '',
       urlHandle: this.category?.urlHandle ?? '',
+      topicId: this.selectedTopicId ?? '',
     };
 
     if (this.id) {

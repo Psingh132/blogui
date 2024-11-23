@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddCategoryRequest } from '../models/add-category-request.model';
 import { CategoryService } from '../services/category.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { TopicService } from 'src/app/shared/services/topic.service';
+import { Topic } from 'src/app/shared/models/topic.model';
 
 @Component({
   selector: 'app-add-category',
@@ -12,6 +13,7 @@ import { TopicService } from 'src/app/shared/services/topic.service';
 })
 export class AddCategoryComponent implements OnInit, OnDestroy {
   model: AddCategoryRequest;
+  topics$?: Observable<Topic[]>;
 
   private addCategorySubscription?: Subscription;
 
@@ -23,15 +25,13 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     this.model = {
       name: '',
       urlHandle: '',
+      topicId: ''
     };
   }
 
   // need to work
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
-  loadTopics(): void {
+    this.topics$ = this.topicService.getAllTopics();
   }
 
   onFormSubmit() {
