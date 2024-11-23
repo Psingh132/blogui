@@ -29,7 +29,6 @@ export class BlogpostListComponent implements OnInit {
         );
       },
     });
-    this.blogPost$ = this.blogPostService.getAllBlogPostsList();
   }
 
   getPage(pageNumber: number) {
