@@ -14,21 +14,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <ng-container *ngIf="!user?.roles?.includes('Writer') && showButtons">
-          <li class="nav-item w-100">
-            <div class="search-bar-container d-flex">
-              <input
-                type="text"
-                class="form-control search-input"
-                placeholder="Search posts"
-                aria-label="Search"
-              />
-              <button class="btn search-button" type="button">
-                <i class="bi bi-search"></i>
-              </button>
-            </div>
-          </li>
-        </ng-container>
         <ng-container
           *ngIf="user !== undefined && user?.roles?.includes('Writer')"
         >

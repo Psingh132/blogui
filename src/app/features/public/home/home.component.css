@@ -1,0 +1,21 @@
+.search-bar-container {
+    max-width: 400px;
+  }
+  
+  .search-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .search-input:focus {
+    border-color: #dee9f191;
+  }
+  
+  .search-button {
+    background-color: #d5dba091;
+    border-color: #dee9f191;
+    color: #6c757d;
+  }

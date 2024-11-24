@@ -49,10 +49,14 @@ export class BlogPostService {
   }
 
   getAllBlogPostsHome(
+    query?: string,
     pageNumber?: number,
     pageSize?: number
   ): Observable<BlogPostHome[]> {
     let params = new HttpParams();
+    if (query) {
+      params = params.set('query', query);
+    }
     if (pageNumber) {
       params = params.set('pageNumber', pageNumber);
     }

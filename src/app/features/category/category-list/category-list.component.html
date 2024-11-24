@@ -45,29 +45,6 @@
               </span>
             </span>
           </th>
-          <th>
-            UrlHandle
-            <span>
-              <span>
-                <button
-                  type="button"
-                  class="btn btn-light"
-                  (click)="sort('url', 'asc')"
-                >
-                  <i class="bi bi-arrow-up"></i>
-                </button>
-              </span>
-              <span>
-                <button
-                  type="button"
-                  class="btn btn-light"
-                  (click)="sort('url', 'desc')"
-                >
-                  <i class="bi bi-arrow-down"></i>
-                </button>
-              </span>
-            </span>
-          </th>
           <th>Topic Name</th>
           <th></th>
         </tr>
@@ -76,7 +53,6 @@
         <tr *ngFor="let category of categories">
           <td>{{ category.id }}</td>
           <td>{{ category.name }}</td>
-          <td>{{ category.urlHandle }}</td>
           <td>{{ category.topic.name }}</td>
           <td>
             <a

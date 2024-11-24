@@ -13,27 +13,3 @@
   background-color: darkorange; /* Darker shade for hover effect */
   border-color: darkorange;
 }
-
-.search-bar-container {
-  flex: 1;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.search-input {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-right: none;
-  outline: none;
-  box-shadow: none;
-}
-
-.search-input:focus {
-  border-color: #dee9f191;
-}
-
-.search-button {
-  background-color: #dee9f191;
-  border-color: #dee9f191;
-  color: #6c757d;
-}
