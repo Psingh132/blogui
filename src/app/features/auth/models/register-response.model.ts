@@ -1,4 +1,5 @@
 export interface RegisterResponse {
-    email: string;
-    password: string;
-  }
+  email: string;
+  password: string;
+  name: string;
+}

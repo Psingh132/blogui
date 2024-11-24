@@ -32,6 +32,7 @@ export class AuthService {
     return this.http.post<RegisterResponse>(
       `${environment.apiBaseUrl}/api/auth/register`,
       {
+        name: request.name,
         email: request.email,
         password: request.password,
       }
@@ -52,6 +53,7 @@ export class AuthService {
 
   setUser(user: User): void {
     this.$user.next(user);
+    localStorage.setItem('user-name', user.name);
     localStorage.setItem('user-email', user.email);
     localStorage.setItem('user-roles', user.roles.join(','));
   }
@@ -63,11 +65,13 @@ export class AuthService {
   getUser(): User | undefined {
     const email = localStorage.getItem('user-email');
     const roles = localStorage.getItem('user-roles');
+    const userName = localStorage.getItem('user-name');
 
-    if (email && roles) {
+    if (email && roles && userName) {
       const user: User = {
         email: email,
         roles: roles.split(','),
+        name: userName,
       };
 
       return user;

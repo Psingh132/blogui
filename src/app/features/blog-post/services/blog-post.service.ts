@@ -21,6 +21,13 @@ export class BlogPostService {
     );
   }
 
+  createBlogPostUser(data: AddBlogPost): Observable<BlogPost> {
+    return this.httpClient.post<BlogPost>(
+      `${environment.apiBaseUrl}/api/blogposts/userblogpost?addAuth=true`,
+      data
+    );
+  }
+
   getAllBlogPostsList(
     pageNumber?: number,
     pageSize?: number
