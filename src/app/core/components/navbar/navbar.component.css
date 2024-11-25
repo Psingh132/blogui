@@ -13,3 +13,8 @@
   background-color: darkorange; /* Darker shade for hover effect */
   border-color: darkorange;
 }
+
+.admin-button {
+  text-decoration: none;
+  color: black;
+}

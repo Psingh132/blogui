@@ -17,11 +17,11 @@
         <ng-container
           *ngIf="user !== undefined && user?.roles?.includes('Writer')"
         >
-          <div class="d-flex align-items-center">
-            <a class="dropdown-item me-2" [routerLink]="['/admin/categories']"
+          <div class="d-flex align-items-center gap-2">
+            <a class="me-2 admin-button" [routerLink]="['/admin/categories']"
               >Categories</a
             >
-            <a class="dropdown-item" [routerLink]="['/admin/blogposts']"
+            <a class="admin-button" [routerLink]="['/admin/blogposts']"
               >BlogPosts</a
             >
           </div>
@@ -52,15 +52,17 @@
         <ng-template #showLogout>
           <ng-container *ngIf="user">
             <div class="d-flex align-items-center">
-              <a
-                class="d-flex align-items-center py-0 px-1 me-2 text-decoration-none"
-                [routerLink]="['/write']"
-                title="Write"
-                style="color: black"
-              >
-                <i class="bi bi-pencil" style="margin-right: 4px"></i>
-                Write
-              </a>
+              <ng-container *ngIf="!user?.roles?.includes('Writer')">
+                <a
+                  class="d-flex align-items-center py-0 px-1 me-2 text-decoration-none"
+                  [routerLink]="['/write']"
+                  title="Write"
+                  style="color: black"
+                >
+                  <i class="bi bi-pencil" style="margin-right: 4px"></i>
+                  Write
+                </a>
+              </ng-container>
               <span>{{ user.email }}</span>
               <button class="btn btn-primary ms-3" (click)="onLogout()">
                 Logout

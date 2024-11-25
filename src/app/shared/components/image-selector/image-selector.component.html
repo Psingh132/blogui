@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <div class="d-flex flex-md-row flex-sm-column flex-wrap">
-      <div class="col-8 p-4" style="overflow-y: scroll">
+      <div class="col-8 p-4" style="overflow-y: auto; max-height: 400px;">
         <ng-container *ngIf="images$ | async as images">
           <div class="d-flex flex-wrap">
             <div
