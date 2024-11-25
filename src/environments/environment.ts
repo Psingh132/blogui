@@ -1,3 +1,3 @@
 export const environment = {
-    apiBaseUrl: 'https://localhost:7258'
+    apiBaseUrl: 'https://webapiservicepriyadarshi.azurewebsites.net'
 };
