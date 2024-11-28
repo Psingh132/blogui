@@ -3,6 +3,7 @@ import { LoginRequest } from '../models/login-request.model';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,13 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginComponent {
   model: LoginRequest;
+  isLoading: boolean = false;
 
   constructor(
     private authService: AuthService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private toaster: ToastrService
   ) {
     this.model = {
       email: '',
@@ -24,8 +27,11 @@ export class LoginComponent {
   }
 
   onFormSubmit(): void {
+    this.isLoading = true;
     this.authService.login(this.model).subscribe({
       next: (response) => {
+        this.isLoading = false;
+        this.toaster.success('Login Successfull!');
         // Set Auth Cookie
         this.cookieService.set(
           'Authorization',
@@ -48,6 +54,10 @@ export class LoginComponent {
         const redirectUrl = this.authService.getRedirectUrl() || '/';
         this.authService.clearRedirectUrl();
         this.router.navigateByUrl(redirectUrl);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.toaster.error('Email or Password is incorrect.');
       },
     });
   }

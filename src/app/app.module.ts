@@ -22,6 +22,8 @@ import { RegisterComponent } from './features/auth/register/register/register.co
 import { WriteBlogComponent } from './features/blog-post/write-blog/write-blog/write-blog.component';
 import { TopicsComponent } from './core/components/topics/topics/topics.component';
 import { TopicDetailComponent } from './core/components/topics/topic-detail/topic-detail.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,22 +42,24 @@ import { TopicDetailComponent } from './core/components/topics/topic-detail/topi
     RegisterComponent,
     WriteBlogComponent,
     TopicsComponent,
-    TopicDetailComponent
+    TopicDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MarkdownModule.forRoot()
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    MarkdownModule.forRoot(),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
