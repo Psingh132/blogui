@@ -13,6 +13,8 @@ import { authGuard } from './features/auth/guards/auth.guard';
 import { RegisterComponent } from './features/auth/register/register/register.component';
 import { WriteBlogComponent } from './features/blog-post/write-blog/write-blog/write-blog.component';
 import { TopicDetailComponent } from './core/components/topics/topic-detail/topic-detail.component';
+import { UserBlogListComponent } from './features/user/user-blog-list/user-blog-list.component';
+import { UserListComponent } from './features/user/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -68,6 +70,14 @@ const routes: Routes = [
     path: 'admin/blogposts/:id',
     component: EditBlogpostComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'user/blogs',
+    component: UserBlogListComponent,
+  },
+  {
+    path: 'user',
+    component: UserListComponent,
   }
 ];
 

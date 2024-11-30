@@ -39,6 +39,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  onEmailClick(event: MouseEvent): void {
+    event.stopPropagation();
+  }
+
   onLogout(): void {
     this.authService.logout();
     this.user = undefined;

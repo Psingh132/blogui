@@ -54,7 +54,7 @@
             <div class="d-flex align-items-center">
               <ng-container *ngIf="!user?.roles?.includes('Writer')">
                 <a
-                  class="d-flex align-items-center py-0 px-1 me-2 text-decoration-none"
+                  class="d-flex align-items-center py-0 px-1 me-3 text-decoration-none"
                   [routerLink]="['/write']"
                   title="Write"
                   style="color: black"
@@ -63,7 +63,58 @@
                   Write
                 </a>
               </ng-container>
-              <span>{{ user.email }}</span>
+              <div class="dropdown">
+                <a
+                  class="btn user-icon-btn"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-person"></i>
+                </a>
+
+                <ul class="dropdown-menu mt-3 custom-dropdown">
+                  <li>
+                    <div
+                      class="d-flex align-items-center dropdown-item"
+                      (click)="onEmailClick($event)"
+                    >
+                      <i class="bi bi-person me-2"></i>
+                      <span>{{ user.email }}</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      *ngIf="!user?.roles?.includes('Writer')"
+                      class="d-flex align-items-center dropdown-item"
+                    >
+                      <i class="bi bi-pencil me-2"></i>
+                      <a
+                        class="text-decoration-none text-dark"
+                        [routerLink]="['/user/blogs']"
+                        >Manage Blogs</a
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      *ngIf="
+                        user !== undefined && user?.roles?.includes('Writer')
+                      "
+                      class="d-flex align-items-center dropdown-item"
+                    >
+                      <i class="bi bi-people me-2"></i>
+                      <a
+                        class="text-decoration-none text-dark"
+                        [routerLink]="['/user']"
+                        >Manage Users</a
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
               <button class="btn btn-primary ms-3" (click)="onLogout()">
                 Logout
               </button>

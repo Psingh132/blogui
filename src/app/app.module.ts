@@ -24,6 +24,8 @@ import { TopicsComponent } from './core/components/topics/topics/topics.componen
 import { TopicDetailComponent } from './core/components/topics/topic-detail/topic-detail.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserBlogListComponent } from './features/user/user-blog-list/user-blog-list.component';
+import { UserListComponent } from './features/user/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     WriteBlogComponent,
     TopicsComponent,
     TopicDetailComponent,
+    UserBlogListComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     MarkdownModule.forRoot(),
   ],
   providers: [

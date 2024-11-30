@@ -5,16 +5,70 @@
 
 .register-button {
   background-color: orange;
-  color: white; /* Ensures text is visible */
-  border-color: orange; /* Matches the button border */
+  color: white;
+  border-color: orange;
 }
 
 .register-button:hover {
-  background-color: darkorange; /* Darker shade for hover effect */
+  background-color: darkorange;
   border-color: darkorange;
 }
 
 .admin-button {
   text-decoration: none;
   color: black;
+}
+
+.user-icon-btn {
+  background-color: #d8dbdd;
+  border: none;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.user-icon-btn:hover {
+  background-color: #007bff;
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.user-icon-btn i {
+  font-size: 1.2rem;
+}
+
+.custom-dropdown {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  background-color: #ffffff;
+}
+
+.custom-dropdown .dropdown-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #333;
+  border-radius: 6px;
+  transition: background-color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.custom-dropdown .dropdown-item i {
+  font-size: 18px;
+  color: #6c757d;
+}
+
+.custom-dropdown .dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+.custom-dropdown li:not(:last-child) {
+  margin-bottom: 4px;
 }
