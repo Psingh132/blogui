@@ -7,6 +7,7 @@ import { CategoryService } from '../../category/services/category.service';
 import { Category } from '../../category/models/category.model';
 import { UpdateBlogPost } from '../models/update-blog-post.model';
 import { ImageService } from 'src/app/shared/components/image-selector/image.service';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-edit-blogpost',
@@ -19,6 +20,7 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
   categories$?: Observable<Category[]>;
   selectedCategories?: string[];
   isImageSelectorVisible: boolean = false;
+  showPopup: boolean = false;
 
   routeSubscription?: Subscription;
   updateBlogPostSubscription?: Subscription;
@@ -31,7 +33,8 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
     private blogPostService: BlogPostService,
     private categoryService: CategoryService,
     private router: Router,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +71,11 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
   }
 
   onFormSubmit(): void {
+    const currentUser = this.authService.getUser();
+    if (!currentUser?.roles?.includes('Admin')) {
+      this.showPopup = true;
+      return;
+    }
     // convert this model to request object
     if (this.model && this.id) {
       var updateBlogPost: UpdateBlogPost = {
@@ -93,6 +101,11 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
   }
 
   onDelete(): void {
+    const currentUser = this.authService.getUser();
+    if (!currentUser?.roles?.includes('Admin')) {
+      this.showPopup = true;
+      return;
+    }
     if (this.id) {
       // call service and delete blogpost
       this.deleteBlogPostSubscription = this.blogPostService
@@ -103,6 +116,14 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
           },
         });
     }
+  }
+
+  closePopup(): void {
+    this.showPopup = false;
+  }
+
+  openPopup(): void {
+    this.showPopup = true;
   }
 
   openImageSelector(): void {

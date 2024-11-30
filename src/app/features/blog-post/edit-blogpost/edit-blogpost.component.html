@@ -161,3 +161,19 @@
   </button>
   <app-image-selector></app-image-selector>
 </div>
+<div class="modal" tabindex="-1" [ngClass]="{
+  'd-block': showPopup,
+  'd-none': !showPopup
+}">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Access Restricted</h5>
+        <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>You don't have permission to perform this action.</p>
+      </div>
+    </div>
+  </div>
+</div>

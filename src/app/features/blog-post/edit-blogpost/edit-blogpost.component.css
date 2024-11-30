@@ -1,0 +1,33 @@
+.modal-content {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal-header {
+    background-color: #64a5eb;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .modal-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+  
+  .btn-close {
+    color: #ffffff;
+    font-size: 1.2rem;
+  }
+  
+  .modal-body {
+    padding: 20px;
+    font-size: 1rem;
+    color: #333;
+  }
+  .modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

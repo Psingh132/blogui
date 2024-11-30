@@ -26,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserBlogListComponent } from './features/user/user-blog-list/user-blog-list.component';
 import { UserListComponent } from './features/user/user-list/user-list.component';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { UserListComponent } from './features/user/user-list/user-list.component
     TopicDetailComponent,
     UserBlogListComponent,
     UserListComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
